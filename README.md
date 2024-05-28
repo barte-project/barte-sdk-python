@@ -41,7 +41,7 @@ Para começar a usar o BarteSDK, siga os passos abaixo:
 
 2. 🌟**Uso**
 
-Para usar o charge.list_by_uuid, que lista a cobrança passando como parâmetro o UUID, siga os passos abaixo:
+Para usar o charge.listByUuid, que lista a cobrança passando como parâmetro o UUID, siga os passos abaixo:
 
 ### Código de Exemplo
 
