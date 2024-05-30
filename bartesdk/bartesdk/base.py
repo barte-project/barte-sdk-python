@@ -5,6 +5,14 @@ class BaseAPI:
         self.api_key = api_key
         self.base_url = base_url
 
+    def _get_base_url(self, env, api_version, path):
+        if env == "prd":
+            return f'https://api.barte.com/{api_version}/{path}'
+        elif env == "sandbox":
+            return f'https://sandbox-api.barte.com/{api_version}/{path}'
+        else:
+            raise ValueError("Invalid environment specified")
+
     def create(self, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,

@@ -2,13 +2,6 @@ from .base import BaseAPI
 
 class buyersAPI(BaseAPI):
     def __init__(self, api_key, env="prd", api_version="v1"):
-        base_url = self._get_base_url(env, api_version)
-        super().__init__(api_key, base_url)
+        path = "buyers"
+        super().__init__(api_key, env, api_version, path)
 
-    def _get_base_url(self, env, api_version):
-        if env == "prd":
-            return f'https://api.barte.com/{api_version}/buyers'
-        elif env == "sandbox":
-            return f'https://sandbox-api.barte.com/{api_version}/buyers'
-        else:
-            raise ValueError("Invalid environment specified")
