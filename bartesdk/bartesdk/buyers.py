@@ -13,27 +13,16 @@ class buyersAPI:
         else:
             raise ValueError("Invalid environment specified")
 
-    def create(self, document, name, email, phone, country_code=None, alternative_email=None, address=None):
+    def create(self, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
             'accept': 'application/json'
         }
-        payload = {
-            'document': document,
-            'name': name,
-            'email': email,
-            'phone': phone,
-        }
-        if country_code:
-            payload['countryCode'] = country_code
-        if alternative_email:
-            payload['alternativeEmail'] = alternative_email
-        if address:
-            payload['address'] = address
-
+        payload = kwargs
         response = requests.post(self.base_url, headers=headers, json=payload)
         return response.status_code, response.json() if response.ok else response.text
+
 
     def get(self, **params):
         headers = {
