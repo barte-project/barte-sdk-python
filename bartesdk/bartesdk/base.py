@@ -54,4 +54,4 @@ class BaseAPI:
         }
         url = f"{self.base_url}/{uuid}"
         response = requests.delete(url, headers=headers)
-        return response.status_code, response.ok
+        return response.status_code, response.json() if response.ok else response.text
