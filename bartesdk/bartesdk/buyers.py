@@ -50,5 +50,9 @@ class buyersAPI:
         url = f"{self.base_url}/{uuid}"
         payload = kwargs
         response = requests.put(url, headers=headers, json=payload)
-        return response.status_code, if response.ok else response.text
+        try:
+            response_data = response.json() if response.ok else response.text
+        except ValueError:
+            response_data = response.text
+        return response.status_code, response_data
 
