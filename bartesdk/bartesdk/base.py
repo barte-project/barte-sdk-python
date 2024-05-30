@@ -46,3 +46,12 @@ class BaseAPI:
         except ValueError:
             response_data = response.text
         return response.status_code, response_data
+
+    def cancel(self, uuid):
+        headers = {
+            'X-Token-Api': self.api_key,
+            'accept': '*/*'
+        }
+        url = f"{self.base_url}/{uuid}"
+        response = requests.delete(url, headers=headers)
+        return response.status_code, response.ok
