@@ -41,19 +41,14 @@ class buyersAPI:
         response = requests.get(url, headers=headers)
         return response.json()
 
-    def update(self, uuid, name, email, countryCode, phone, alternativeEmail):
+    def update(self, uuid, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
             'accept': '*/*'
         }
         url = f"{self.base_url}/{uuid}"
-        payload = {
-            'name': name,
-            'email': email,
-            'countryCode': countryCode,
-            'phone': phone,
-            'alternativeEmail': alternativeEmail
-        }
+        payload = kwargs
         response = requests.put(url, headers=headers, json=payload)
-        return response.status_code, response.ok
+        return response.status_code, response.json() if response.ok else response.text
+
