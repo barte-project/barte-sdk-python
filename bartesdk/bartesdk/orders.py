@@ -13,22 +13,13 @@ class ordersAPI:
         else:
             raise ValueError("Invalid environment specified")
 
-    def create(self, start_date, value, installments, title, description, payment, uuid_buyer, idempotency_key):
+    def create(self, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
-            'x-idempotency-key': idempotency_key,
-            'accept': '*/*'
+            'accept': 'application/json'
         }
-        payload = {
-            "startDate": start_date,
-            "value": value,
-            "installments": installments,
-            "title": title,
-            "description": description,
-            "payment": payment,
-            "uuidBuyer": uuid_buyer
-        }
+        payload = kwargs
         response = requests.post(self.base_url, headers=headers, json=payload)
         return response.status_code, response.json() if response.ok else response.text
 
@@ -39,19 +30,20 @@ class ordersAPI:
         response = requests.get(self.base_url, headers=headers, params=params)
         return response.json()
 
-    def update(self, uuid, metadata, description):
+    def update(self, uuid, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
             'accept': '*/*'
         }
-        payload = {
-            "metadata": metadata,
-            "description": description
-        }
-        url = f"{self.base_url}/{uuid}/basic-value"
-        response = requests.patch(url, headers=headers, json=payload)
-        return response.status_code, response.json() if response.ok else response.text
+        url = f"{self.base_url}/{uuid}"
+        payload = kwargs
+        response = requests.put(url, headers=headers, json=payload)
+        try:
+            response_data = response.json() if response.ok else response.text
+        except ValueError:
+            response_data = response.text
+        return response.status_code, response_data
 
     def getByUuid(self, uuid):
         headers = {

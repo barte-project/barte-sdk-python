@@ -21,20 +21,13 @@ class subscriptionsAPI:
         response = requests.get(url, headers=headers)
         return response.json()
 
-    def create(self, uuid_plan, basic_value, additional_value, payment, uuid_buyer, start_date):
+    def create(self, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
             'accept': 'application/json'
         }
-        payload = {
-            "uuidPlan": uuid_plan,
-            "basicValue": basic_value,
-            "additionalValue": additional_value,
-            "payment": payment,
-            "uuidBuyer": uuid_buyer,
-            "startDate": start_date
-        }
+        payload = kwargs
         response = requests.post(self.base_url, headers=headers, json=payload)
         return response.status_code, response.json() if response.ok else response.text
 

@@ -22,15 +22,20 @@ class paymentlinksAPI:
         response = requests.get(url, headers=headers)
         return response.status_code, response.json() if response.ok else response.text
 
-    def update(self, uuid, payload):
+    def update(self, uuid, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
             'accept': '*/*'
         }
         url = f"{self.base_url}/{uuid}"
+        payload = kwargs
         response = requests.put(url, headers=headers, json=payload)
-        return response.status_code, response.ok
+        try:
+            response_data = response.json() if response.ok else response.text
+        except ValueError:
+            response_data = response.text
+        return response.status_code, response_data
 
     def cancel(self, uuid):
         headers = {
@@ -49,12 +54,13 @@ class paymentlinksAPI:
         response = requests.get(self.base_url, headers=headers, params=params)
         return response.status_code, response.json() if response.ok else response.text
 
-    def create(self, payload):
+    def create(self, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
-            'accept': '*/*'
+            'accept': 'application/json'
         }
+        payload = kwargs
         response = requests.post(self.base_url, headers=headers, json=payload)
         return response.status_code, response.json() if response.ok else response.text
 

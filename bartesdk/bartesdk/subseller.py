@@ -22,48 +22,28 @@ class subsellerAPI:
         response = requests.get(url, headers=headers)
         return response.status_code, response.json() if response.ok else response.text
 
-    def update(self, subseller_id, name, document_type, document, alternative_email, owner_name, owner_document, birthdate, opening_date, payment_type, payment_value, description):
+    def update(self, uuid, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
             'accept': '*/*'
         }
-        payload = {
-            "name": name,
-            "documentType": document_type,
-            "document": document,
-            "alternativeEmail": alternative_email,
-            "ownerName": owner_name,
-            "ownerDocument": owner_document,
-            "birthdate": birthdate,
-            "openingDate": opening_date,
-            "paymentType": payment_type,
-            "paymentValue": payment_value,
-            "description": description
-        }
-        url = f"{self.base_url}/{subseller_id}"
-        response = requests.patch(url, headers=headers, json=payload)
-        return response.status_code, response.json() if response.ok else response.text
+        url = f"{self.base_url}/{uuid}"
+        payload = kwargs
+        response = requests.put(url, headers=headers, json=payload)
+        try:
+            response_data = response.json() if response.ok else response.text
+        except ValueError:
+            response_data = response.text
+        return response.status_code, response_data
 
-    def create(self, name, document_type, document, phone, alternative_email, address, account, contact, payment_type, payment_value, description):
+    def create(self, **kwargs):
         headers = {
             'X-Token-Api': self.api_key,
             'Content-Type': 'application/json',
-            'accept': '*/*'
+            'accept': 'application/json'
         }
-        payload = {
-            "name": name,
-            "documentType": document_type,
-            "document": document,
-            "phone": phone,
-            "alternativeEmail": alternative_email,
-            "address": address,
-            "account": account,
-            "contact": contact,
-            "paymentType": payment_type,
-            "paymentValue": payment_value,
-            "description": description
-        }
+        payload = kwargs
         response = requests.post(self.base_url, headers=headers, json=payload)
         return response.status_code, response.json() if response.ok else response.text
 
