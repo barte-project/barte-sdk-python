@@ -1,9 +1,9 @@
 import requests
 
 class BaseAPI:
-    def __init__(self, api_key, base_url):
+    def __init__(self, api_key, env, api_version, path):
         self.api_key = api_key
-        self.base_url = base_url
+        self.base_url = self._get_base_url(env, api_version, path)
 
     def _get_base_url(self, env, api_version, path):
         if env == "prd":
