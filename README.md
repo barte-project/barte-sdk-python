@@ -32,36 +32,130 @@ Adotar o BarteSDK não é apenas uma questão de conveniência; é uma decisão 
 
 Para começar a usar o BarteSDK, siga os passos abaixo:
 
-1. 📲**Instalação**
+1. **INSTALAÇÃO**
+
 
    Instale o SDK via pip:
 
    ```bash
    pip install bartesdk
 
-2. 🌟**Uso**
+2. **QUICKSTART**
 
-Para usar o charges.listByUuid, que lista a cobrança passando como parâmetro o UUID, siga os passos abaixo:
+Todos os requests feitos utilizando o bartesdk devem incluir alguns parâmetros comuns para garantir a autenticação e a especificação do ambiente e versão da API. Esses parâmetros são essenciais para a comunicação adequada com os serviços da Barte.
 
-### Código de Exemplo
+- `api_key`: Chave de API gerada no Portal do Seller em Configurações -> Integração -> Chaves API. Esta chave é utilizada para autenticar as requisições e garantir que apenas usuários autorizados possam acessar os recursos da API.
 
-```python
+- `env`: Especifica em qual ambiente o request deverá ser feito. Os valores possíveis são: "prd" ou "sandbox".
+
+- `api_version`: Versão da API que está sendo utilizada. Atualmente, as versões disponíveis são v1 e v2.
+
+### Exemplo de Requisição:
+
+   ```python
 from bartesdk import BarteSDK
 
+# Defina sua chave de API gerada no Portal do Seller
 api_key = 'your-api-token'
+
+# Crie uma instância da classe BarteSDK especificando o ambiente e a versão da API
 api_client = BarteSDK(api_key, env="sandbox", api_version="v2")
 
-response = api_client.charges.listByUuid(
-    charge_uuid='fcb169c5-1238-45de-9d44-acdc858b021e'
+# Faça um request para um módulo e método específicos
+response = api_client.{modulo}.{metodo}(
+    x='y'
+)
+
+# Imprima a resposta do request
+print(response)
+```
+
+3. **MÓDULOS**
+
+
+### `buyers`
+
+Gerencie os perfis dos compradores registrados no seu sistema de maneira eficiente. Esta API permite criar novos registros, listar os existentes, atualizar informações e excluir dados conforme necessário. Facilita a administração completa dos perfis, assegurando que as informações estejam sempre atualizadas e acessíveis.
+
+### `charges`
+
+Gerencie as cobranças registradas no seu sistema, permitindo a criação, listagem, atualização, estorno e cancelamento de cobranças de forma eficiente e segura.
+
+### `plans`
+
+Gerencia os planos de pagamento cadastrados no seu sistema de checkout. Com esta biblioteca, você pode criar novos planos, listar todos os planos cadastrados, atualizar detalhes de planos existentes e excluir planos conforme necessário. Ideal para administrar diversos tipos de planos de assinatura ou pagamento recorrente, garantindo flexibilidade e controle total sobre as opções de pagamento oferecidas aos seus clientes.
+####
+
+### `orders`
+
+A biblioteca de Orders permite gerenciar pedidos registrados no seu sistema de maneira eficiente e flexível. Com essa API, é possível criar novos pedidos, listar pedidos existentes, atualizar detalhes de pedidos específicos e obter informações detalhadas sobre pedidos individuais. A API é projetada para ser robusta e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
+####
+
+### `subscription`
+
+A biblioteca de Subscriptions permite gerenciar assinaturas no seu sistema de maneira eficiente e flexível. Com essa API, você pode criar novas assinaturas, listar assinaturas existentes, atualizar detalhes de assinaturas específicas, cancelar assinaturas e obter informações detalhadas sobre assinaturas individuais. A API é projetada para ser robusta e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
+####
+
+3. **MÉTODOS**
+
+### `create`
+
+Este método permite a criação de novos registros no sistema. Pode ser utilizado para adicionar novos itens, como compradores, pedidos, planos, assinaturas, entre outros. Os parâmetros necessários para a criação são passados dinamicamente, permitindo flexibilidade e fácil adaptação às mudanças no backend.
+
+   ```python
+   response = api_client.{modulo}.create(
+    campo1="valor1",
+    campo2="valor2",
+    ...
 )
 print(response)
 ```
-### Variáveis `api_client`
-- `env`: prd ou sandbox.
-- `api_version`: Versão da API ( v1 ou v2 ).
-- `api_key`: API Token para autenticação.
 
-3. 📚 **Documentação**
+### `update`
 
-Acesso a página do OpenAPI/Swagger para saber com detalhes todos recursos e métodos:
- - [APIs](https://dev-bff.barte.com/v1/docs/swagger-ui/index.html?configUrl=/v1/api-docs/swagger-config#/)
+Este método permite a atualização de registros existentes no sistema. Pode ser utilizado para modificar informações de itens como compradores, pedidos, planos, assinaturas, etc. Os parâmetros necessários para a atualização são passados dinamicamente, permitindo flexibilidade e fácil adaptação às mudanças no backend.
+
+   ```python
+    response = api_client.{modulo}.update(
+        uuid='uuid-do-item',
+        campo1="valor1",
+        campo2="valor2",
+        ...
+    )
+    print(response)
+```
+
+### `get`
+
+Este método permite a obtenção de uma lista de registros do sistema. Pode ser utilizado para listar itens como compradores, pedidos, planos, assinaturas, etc. Os parâmetros de consulta são passados dinamicamente, permitindo a filtragem e busca conforme necessário.
+
+   ```python
+response = api_client.{modulo}.get(
+    filtro1="valor1",
+    filtro2="valor2",
+    ...
+)
+print(response)
+```
+
+### `getByUuid`
+
+Este método permite a obtenção de informações detalhadas de um registro específico no sistema. Pode ser utilizado para buscar detalhes de itens como compradores, pedidos, planos, assinaturas, etc. O UUID do registro é passado como parâmetro.
+
+   ```python
+    response = api_client.{modulo}.getByUuid(
+        uuid='uuid-do-item'
+    )
+    print(response)
+   ```
+
+### `cancel`
+
+Este método permite a exclusão de registros no sistema. Pode ser utilizado para remover itens como compradores, pedidos, planos, assinaturas, etc. O UUID do registro a ser excluído é passado como parâmetro.
+
+   ```python
+response = api_client.{modulo}.delete(
+    uuid='uuid-do-item'
+)
+print(response)
+```
