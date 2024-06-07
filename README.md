@@ -96,7 +96,7 @@ A biblioteca de Orders permite gerenciar pedidos registrados no seu sistema de m
 A biblioteca de Subscriptions permite gerenciar assinaturas no seu sistema de maneira eficiente e flexível. Com essa API, você pode criar novas assinaturas, listar assinaturas existentes, atualizar detalhes de assinaturas específicas, cancelar assinaturas e obter informações detalhadas sobre assinaturas individuais. A API é projetada para ser robusta e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
 ####
 
-3. **MÉTODOS**
+4. **MÉTODOS**
 
 ### `create`
 
