@@ -1,6 +1,6 @@
-# BarteSDK
+# BarteSDK para Python
 
-Bem-vindo ao BarteSDK, a solução oficial para integração com as APIs de pagamento da Barte, projetada para simplificar e acelerar o desenvolvimento de aplicações fintech. Com nosso SDK, você pode facilmente integrar funcionalidades de pagamento, assinaturas, e gestão de compradores em sua aplicação.
+Bem-vindo ao BarteSDK para Python, a solução oficial para integração com as APIs de pagamento da Barte, projetada para simplificar e acelerar o desenvolvimento de suas aplicações . Com nosso SDK, você pode facilmente integrar funcionalidades de pagamento, assinaturas, e gestão de compradores em sua aplicação.
 
 ## Recursos do SDK
 
@@ -11,7 +11,6 @@ O BarteSDK fornece métodos convenientes para interagir com as seguintes APIs:
 - **API de Compradores**: Auxilia na gestão dos compradores cadastrados.
 - **API de Cobranças**: Fornece ferramentas para o gerenciamento das cobranças.
 - **API de Assinaturas**: Facilita a criação e gestão de assinaturas.
-- **API de Criação de Link de Pagamento**: Permite a geração e gerenciamento de links de pagamento.
 
 ## Vantagens do BarteSDK
 
@@ -75,7 +74,7 @@ print(response)
 
 ### `buyers`
 
-Gerencie os perfis dos compradores registrados no seu sistema de maneira eficiente. Esta API permite criar novos registros, listar os existentes, atualizar informações e excluir dados conforme necessário. Facilita a administração completa dos perfis, assegurando que as informações estejam sempre atualizadas e acessíveis.
+Gerencie os perfis dos compradores registrados no seu sistema de maneira eficiente. Este módulo permite criar novos registros, listar os existentes, atualizar informações e excluir dados conforme necessário. Facilita a administração completa dos perfis, assegurando que as informações estejam sempre atualizadas e acessíveis.
 
 ### `charges`
 
@@ -83,17 +82,17 @@ Gerencie as cobranças registradas no seu sistema, permitindo a criação, lista
 
 ### `plans`
 
-Gerencia os planos de pagamento cadastrados no seu sistema de checkout. Com esta biblioteca, você pode criar novos planos, listar todos os planos cadastrados, atualizar detalhes de planos existentes e excluir planos conforme necessário. Ideal para administrar diversos tipos de planos de assinatura ou pagamento recorrente, garantindo flexibilidade e controle total sobre as opções de pagamento oferecidas aos seus clientes.
+Gerencia os planos de pagamento cadastrados no seu sistema de checkout. Com este módulo, você pode criar novos planos, listar todos os planos cadastrados, atualizar detalhes de planos existentes e excluir planos conforme necessário. Ideal para administrar diversos tipos de planos de assinatura ou pagamento recorrente, garantindo flexibilidade e controle total sobre as opções de pagamento oferecidas aos seus clientes.
 ####
 
 ### `orders`
 
-A biblioteca de Orders permite gerenciar pedidos registrados no seu sistema de maneira eficiente e flexível. Com essa API, é possível criar novos pedidos, listar pedidos existentes, atualizar detalhes de pedidos específicos e obter informações detalhadas sobre pedidos individuais. A API é projetada para ser robusta e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
+O módulo de Orders permite gerenciar pedidos registrados no seu sistema de maneira eficiente e flexível. Com ele, é possível criar novos pedidos, listar pedidos existentes, atualizar detalhes de pedidos específicos e obter informações detalhadas sobre pedidos individuais. Ele foi projetado para ser robusto e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
 ####
 
 ### `subscription`
 
-A biblioteca de Subscriptions permite gerenciar assinaturas no seu sistema de maneira eficiente e flexível. Com essa API, você pode criar novas assinaturas, listar assinaturas existentes, atualizar detalhes de assinaturas específicas, cancelar assinaturas e obter informações detalhadas sobre assinaturas individuais. A API é projetada para ser robusta e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
+O módulo de Subscriptions permite gerenciar assinaturas no seu sistema de maneira eficiente e flexível. Com ele, você pode criar novas assinaturas, listar assinaturas existentes, atualizar detalhes de assinaturas específicas, cancelar assinaturas e obter informações detalhadas sobre assinaturas individuais. A API é projetada para ser robusta e adaptável, aceitando uma ampla variedade de parâmetros que facilitam a integração e a manutenção do sistema.
 ####
 
 4. **MÉTODOS**
