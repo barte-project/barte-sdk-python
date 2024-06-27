@@ -1,7 +1,6 @@
 # coding: utf-8
 
 # flake8: noqa
-
 """
     Barte Api
 
@@ -14,28 +13,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.0.0"
-
-# import apis into sdk package
-from bartesdk.api.apide_assinaturas_api import APIDeAssinaturasApi
-from bartesdk.api.apide_cobranas_api import APIDeCobranasApi
-from bartesdk.api.apide_compradores_api import APIDeCompradoresApi
-from bartesdk.api.apide_pedidos_work_in_progress_api import APIDePedidosWorkInProgressApi
-from bartesdk.api.apide_planos_api import APIDePlanosApi
-from bartesdk.api.apide_sub_seller_api import APIDeSubSellerApi
-
-# import ApiClient
-from bartesdk.api_response import ApiResponse
-from bartesdk.api_client import ApiClient
-from bartesdk.configuration import Configuration
-from bartesdk.exceptions import OpenApiException
-from bartesdk.exceptions import ApiTypeError
-from bartesdk.exceptions import ApiValueError
-from bartesdk.exceptions import ApiKeyError
-from bartesdk.exceptions import ApiAttributeError
-from bartesdk.exceptions import ApiException
-
-# import models into sdk package
+# import models into model package
 from bartesdk.models.account import Account
 from bartesdk.models.account_response import AccountResponse
 from bartesdk.models.additional_value_request import AdditionalValueRequest
