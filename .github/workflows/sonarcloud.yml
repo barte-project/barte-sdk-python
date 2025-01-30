@@ -3,10 +3,10 @@ name: SonarCloud Analysis
 on:
   push:
     branches:
-      - master
+      - master  # ou master, dependendo do nome da sua branch principal
   pull_request:
     branches:
-      - master
+      - master  # ou master
 
 jobs:
   sonar:
@@ -17,22 +17,10 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Instalar dependências
-        run: npm install
-
-      - name: Rodar SonarCloud Scan
+      - name: Rodar análise do SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          npx sonar-scanner \
-            -Dsonar.organization=barte \
-            -Dsonar.projectKey=barte-projeto \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
-            -Dsonar.pullrequest.branch=${{ github.head_ref }} \
-            -Dsonar.pullrequest.base=${{ github.base_ref }}
+          sonar-scanner -Dsonar.organization=barte \
+                        -Dsonar.projectKey=barte-sdk-python \
+                        -Dsonar.host.url=https://sonarcloud.io
