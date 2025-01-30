@@ -3,10 +3,10 @@ name: SonarCloud Analysis
 on:
   push:
     branches:
-      - master  # ou master, dependendo do nome da sua branch principal
+      - master
   pull_request:
     branches:
-      - master  # ou master
+      - master
 
 jobs:
   sonar:
@@ -16,6 +16,13 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
+
+      - name: Instalar SonarScanner
+        run: |
+          curl -sSLo sonar-scanner.zip https://barte-document.s3.us-east-1.amazonaws.com/package/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar-scanner.zip
+          mv sonar-scanner-5.0.1.3006-linux sonar-scanner
+          echo "$(pwd)/sonar-scanner/bin" >> $GITHUB_PATH
 
       - name: Rodar análise do SonarCloud
         env:
